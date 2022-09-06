@@ -1,0 +1,43 @@
+.card-item {
+    position: relative;
+    border-radius: 6px;
+    cursor: pointer;
+    perspective: 300px;
+
+    &.selected, &.finished {
+        pointer-events: none;
+        .front {
+            transform: rotateY(360deg);
+        }
+        .back {
+            transform: rotateY(180deg);
+        }
+    }
+
+    & .front, & .back {
+        position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-color: aqua;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+        backface-visibility: hidden;
+		transition: all 400ms;
+    }
+    & .front {
+        transform: rotateY(180deg);
+        background-size: 70px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    & .back {
+        z-index: 1;
+        font-size: 32px;
+    }
+
+}
