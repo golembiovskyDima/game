@@ -1,14 +1,16 @@
 import React, { MouseEvent } from "react";
+import PropTypes from 'prop-types';
 import "./SelectAmountCards.scss";
 
-type Props = {
+interface SelectAmountCardsProps {
     onSelect: (amount: number) => void;
 }
 
-const variants = [ 36, 48, 64 ]
-export const SelectAmountCards: React.FC<Props> = ({ onSelect }) => {
+const variants = [ 36, 48, 64 ];
 
-    const clickHandle = (variant: number) => (event: MouseEvent<HTMLButtonElement>) => {
+export const SelectAmountCards: React.FC<SelectAmountCardsProps> = ({ onSelect }) => {
+
+    const clickHandle = (variant: number) => (event: MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         onSelect(variant);
     } 
@@ -20,11 +22,15 @@ export const SelectAmountCards: React.FC<Props> = ({ onSelect }) => {
                 <button
                     key={variant}
                     className="select-button"
-                    onClick={clickHandle(variant)}
+                    onClick={clickHandle(variant / 2)}
                 >
                     {variant}
                 </button>
             )}
         </div>
     )
+}
+
+SelectAmountCards.propTypes = {
+    onSelect: PropTypes.func.is
 }
